@@ -12,12 +12,6 @@ jobs:
         with:
           deno-version: v1.x
 
-    - shell: bash
-      env:
-        SUPER_SECRET: ${{ secrets.SuperSecret }}
-      run: |
-        example-command "$SUPER_SECRET"
-
       - name: Create Token
         env:
           BANDLAB_REFRESH_TOKEN: ${{ secrets.BANDLAB_REFRESH_TOKEN }}
