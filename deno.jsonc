@@ -27,12 +27,14 @@
         // Download collection data
         "data:collections": "deno run -A src/main.ts collections",
         // Download example data
-        "data:tests": "deno run -A src/main.ts example-data",
+        "data:examples": "deno run -A src/main.ts example-data",
         // Create/Update sqlite db at `data/bandlab-sounds.db`
         "data:sqlite": "deno run -A src/main.ts data",
         // Validate token & renew if invalid
         "token": "deno task token:validate || deno task token:renew; deno task token:eta",
         // Download all data
-        "data": "deno task data:test && data:packs && deno task data:samples && deno task data:collections"
+        "data": "deno task data:packs && deno task data:samples && deno task data:collections",
+        "csv:import":"rm test.db;sqlite3 test.db < src/db/migrations/1-schema.sql; sqlite3 test.db <src/db/backups/import.sql",
+        "csv:export":"sqlite3 data/bandlab-sounds.db <src/db/backups/export.sql"
     }
 }

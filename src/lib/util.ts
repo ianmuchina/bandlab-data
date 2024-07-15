@@ -13,7 +13,7 @@ export function writeJson(path: string, obj: unknown) {
 
 // Convert Object to JSON string
 export function toJSONString(f: unknown) {
-    return JSON.stringify(f, null, '\t')
+    return JSON.stringify(f)
 }
 
 // Convert Object to JSON string with indentation

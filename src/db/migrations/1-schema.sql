@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS creators (
     id TEXT NOT NULL UNIQUE PRIMARY KEY,
-    name TEXT NOT NULL,
-    username TEXT NOT NULL
+    name TEXT NOT NULL UNIQUE,
+    username TEXT NOT NULL UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS packs (
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS samples (
     name TEXT NOT NULL,
     duration REAL NOT NULL,
     bars INTEGER NOT NULL,
-    instrument_id TEXT NOT NULL,
+    instrument_id TEXT,
     pack_id TEXT NOT NULL,
     release_date INTEGER NOT NULL,
     loop_tempo INTEGER,
