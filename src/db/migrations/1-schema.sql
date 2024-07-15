@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS packs (
     release_date INTEGER NOT NULL,
     update_date INTEGER NOT NULL,
     creator_id TEXT,
-    sample_count INTEGER NOT NULL,
 
     FOREIGN KEY (creator_id) REFERENCES creators (id)
 );
