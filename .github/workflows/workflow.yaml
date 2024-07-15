@@ -1,0 +1,38 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "19 19 * * *"
+
+jobs:
+  getData:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+
+      - name: Create Token
+        env:
+          BANDLAB_REFRESH_TOKEN: ${{ secrets.BANDLAB_REFRESH_TOKEN }}
+        run: deno task token:renew-env && deno task token
+
+      - name: Fetch Pack Data
+        run: deno task data:packs
+      
+      - name: Fetch Sample Data
+        run: deno task data:samples
+      
+      - name: Fetch Collection Data
+        run: deno task data:collections
+      
+      - name: Make db
+        run: deno task data:sqlite
+      - run: echo 'VACUUM' | sqlite3 data/bandlab-sounds.db
+      - name: Upload db
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandlab-sounds.db
+          path: data/bandlab-sounds.db
+          compression-level: 9
+          retention-days: 2

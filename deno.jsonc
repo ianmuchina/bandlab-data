@@ -1,0 +1,38 @@
+{
+    "vendor": true,
+    "lint": { "include": ["src/"] },
+    "fmt": {
+        "useTabs": false,
+        "lineWidth": 120,
+        "indentWidth": 4,
+        "semiColons": false,
+        "singleQuote": true,
+        "proseWrap": "preserve",
+        "include": ["src/"]
+    },
+
+    "tasks": {
+        // Renew Token
+        "token:renew": "deno run -A src/main.ts renew",
+        // Renew Token using refresh token env variable
+        "token:renew-env": "deno run -A src/main.ts renew-env",
+        // Validate current access_token
+        "token:validate": "deno run -A src/main.ts validate",
+        // Print current time remaining in jwt
+        "token:eta": "deno run -A src/main.ts remaining",
+        // Download pack data
+        "data:packs": "deno run -A src/main.ts packs",
+        // Download sample data
+        "data:samples": "deno run -A src/main.ts samples",
+        // Download collection data
+        "data:collections": "deno run -A src/main.ts collections",
+        // Download example data
+        "data:tests": "deno run -A src/main.ts example-data",
+        // Create/Update sqlite db at `data/bandlab-sounds.db`
+        "data:sqlite": "deno run -A src/main.ts data",
+        // Validate token & renew if invalid
+        "token": "deno task token:validate || deno task token:renew; deno task token:eta",
+        // Download all data
+        "data": "deno task data:test && data:packs && deno task data:samples && deno task data:collections"
+    }
+}
