@@ -52,10 +52,11 @@ function remainingCmd() {
 async function renew_envCmd() {
     const refresh_token = process.env.BANDLAB_REFRESH_TOKEN
     if (!refresh_token) {
-        console.error('BANDLAB_REFRESH_TOKEN env variable set')
+        console.error('EMPTY: `BANDLAB_REFRESH_TOKEN`')
         process.exit(2)
     }
     const tokenFile = await GetNewAccessToken(refresh_token)
+    fs.mkdirSync("data", { recursive: true })
     fs.writeFileSync('data/token.json', toJSONString(tokenFile))
 }
 

@@ -6,7 +6,8 @@ Scrapes the Bandlab Sounds API
 - Login/Register to [bandlab.com](https://bandlab.com)
 - Copy the `refresh_token` cookie
 - Create a new json file at `data/token.json` with the value
-```json
+```jsonc
+// data/token.json
 { "refresh_token": "" }
 ```
 - Install [deno](https://deno.com/)
