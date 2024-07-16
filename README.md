@@ -1,5 +1,8 @@
 # bandlab-data
 
+[![.github/workflows/workflow.yaml](https://github.com/ianmuchina/bandlab-data/actions/workflows/workflow.yaml/badge.svg)](https://github.com/ianmuchina/bandlab-data/actions/workflows/workflow.yaml)
+
+
 Scrapes the Bandlab Sounds API
 
 ## Usage
